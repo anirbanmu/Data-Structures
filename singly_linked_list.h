@@ -46,12 +46,7 @@ template <typename T> class SinglyLinkedList
 
         SinglyLinkedList(const SinglyLinkedList<T>& other) : SinglyLinkedList()
         {
-            const Node* current_other = other.front();
-            while (current_other != nullptr)
-            {
-                emplace_back(current_other->data);
-                current_other = current_other->next;
-            }
+            copy_all(other);
         }
 
         ~SinglyLinkedList()
@@ -63,6 +58,33 @@ template <typename T> class SinglyLinkedList
                 delete current;
                 current = next;
             }
+        }
+
+        void append(const SinglyLinkedList<T>& other)
+        {
+            return copy_all(other);
+        }
+
+        template <typename... Args> Node* insert_after(Node* p, Args... params)
+        {
+            auto* next = p->next;
+            p->next = new Node(params...);
+            p->next->next = next;
+            return p->next;
+        }
+
+        Node* find(const T& t)
+        {
+            Node* current = front();
+            while (current != nullptr)
+            {
+                if (current->data == t)
+                {
+                    break;
+                }
+                current = current->next;
+            }
+            return current;
         }
 
         bool operator==(const SinglyLinkedList& other) const
@@ -143,9 +165,19 @@ template <typename T> class SinglyLinkedList
 
             return reverse(next, p);
         }
+
+        void copy_all(const SinglyLinkedList<T>& other)
+        {
+            const Node* current_other = other.front();
+            while (current_other != nullptr)
+            {
+                emplace_back(current_other->data);
+                current_other = current_other->next;
+            }
+        }
 };
 
-template <typename T> void print_singly_linked_list(const SinglyLinkedList<T>& l)
+template <typename T> void print(const SinglyLinkedList<T>& l)
 {
     const auto* current = l.front();
 

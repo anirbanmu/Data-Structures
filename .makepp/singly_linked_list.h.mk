@@ -1,6 +1,0 @@
-INCLUDES=
-SYSTEM_INCLUDES=assert.h initializer_list iostream
-LIBS=
-SIGNATURE=1466541306,3781
-C_MD5_SUM=pg1YPGvkAWQxmnJ4o0x9kQ
-END=

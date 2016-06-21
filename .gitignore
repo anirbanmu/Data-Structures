@@ -1,3 +1,6 @@
+# Makepp
+.makepp/
+
 # Compiled Object files
 *.slo
 *.lo
