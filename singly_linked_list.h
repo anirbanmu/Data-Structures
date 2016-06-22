@@ -70,6 +70,7 @@ template <typename T> class SinglyLinkedList
             auto* next = p->next;
             p->next = new Node(params...);
             p->next->next = next;
+            length++;
             return p->next;
         }
 
