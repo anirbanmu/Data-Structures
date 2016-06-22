@@ -8,3 +8,4 @@
  + Append (another list or an element)
  + Reverse
  + Insert after
+ + Erase

@@ -48,6 +48,19 @@ void test_singly_linked_list()
         l2.insert_after(found, 2);
         l2_expected.insert(++find(l2_expected.begin(), l2_expected.end(), 56), 2);
         verify_equal(l2_expected, l2);
+
+        l2.erase(found);
+        l2_expected.erase(find(l2_expected.begin(), l2_expected.end(), 56));
+        verify_equal(l2_expected, l2);
+
+        found = l2.find(45);
+        assert(found != nullptr);
+        assert(found->data == 45);
+        assert(found == l2.front());
+
+        l2.erase(found);
+        l2_expected.erase(find(l2_expected.begin(), l2_expected.end(), 45));
+        verify_equal(l2_expected, l2);
     }
 }
 

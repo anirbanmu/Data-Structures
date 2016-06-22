@@ -71,7 +71,34 @@ template <typename T> class SinglyLinkedList
             p->next = new Node(params...);
             p->next->next = next;
             length++;
+            if (p->next->next == nullptr)
+            {
+                back = p->next;
+            }
             return p->next;
+        }
+
+        void erase(Node* p)
+        {
+            Node* current = front();
+            if (current == p)
+            {
+                head = current->next;
+            }
+            else
+            {
+                while (current->next != p)
+                {
+                    current = current->next;
+                }
+                current->next = p->next;
+            }
+            length--;
+            if (current->next == nullptr)
+            {
+                back = current;
+            }
+            delete p;
         }
 
         Node* find(const T& t)
